@@ -4,13 +4,14 @@ import gql from "graphql-tag";
 
 class App extends Component {
   render() {
-    const { data: { loading, pets} } = this.props;
+    const { data: { loading, people, pets, error } } = this.props;
     return (
       <main>
         {loading ? (
           <p>Loading…</p>
         ) : (
           <ul>
+            {people.map(person => <li key={person.id}>{person.name}</li>)}
             {pets.map(pet => <li key={pet.name}>{pet.name}</li>)}
           </ul>
         )
@@ -23,12 +24,17 @@ class App extends Component {
 export default graphql(
   gql`
     query ErrorTemplate {
-      pets {
-        ...pet
+      people {
+        ...person
+      }
+
+      pets @client {
+        name
       }
     }
 
-    fragment pet on Pet {
+    fragment person on Person {
+      id
       name
     }
 `
