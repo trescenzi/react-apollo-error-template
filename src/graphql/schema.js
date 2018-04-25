@@ -20,6 +20,15 @@ const peopleData = [
   { id: 3, name: 'Budd Deey' },
 ];
 
+const PetType = new GraphQLObjectType({
+  name: 'Pet',
+  fields: {
+    name: {type: GraphQLString}
+  },
+});
+
+const petData = [{name: 'ServerPet'}];
+
 const QueryType = new GraphQLObjectType({
   name: 'Query',
   fields: {
@@ -27,6 +36,10 @@ const QueryType = new GraphQLObjectType({
       type: new GraphQLList(PersonType),
       resolve: () => peopleData,
     },
+    pets: {
+      type: new GraphQLList(PetType),
+      resolve: () => petData,
+    }
   },
 });
 
