@@ -9,13 +9,12 @@ class App extends Component {
       <main>
         {loading ? (
           <p>Loading…</p>
-        ) : /*(
+        ) : (
           <ul>
             {people.map(person => <li key={person.id}>{person.name}</li>)}
             {pets.map(pet => <li key={pet.name}>{pet.name}</li>)}
           </ul>
-        )*/
-          (<p>{error.toString()}</p>)
+        )
         }
       </main>
     );
@@ -29,7 +28,7 @@ export default graphql(
         ...person
       }
 
-      pets @client {
+      pets {
         ...pet
       }
     }
