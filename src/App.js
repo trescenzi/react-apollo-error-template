@@ -29,12 +29,16 @@ export default graphql(
       }
 
       pets @client {
-        name
+        ...pet
       }
     }
 
     fragment person on Person {
       id
+      name
+    }
+
+    fragment pet on Pet {
       name
     }
 `
